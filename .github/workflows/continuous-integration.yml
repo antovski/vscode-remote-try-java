@@ -29,8 +29,8 @@ jobs:
         run: 'npm install -g @cyclonedx/cdxgen'
       - name: Generate BOM file
         run: cdxgen -o bom.json
-      - name: Upload BOM file to Dependency-Track
-        run: curl -X "POST" http://antovski.ddns.net:8091/api/v1/bom -H 'Content-Type:multipart/form-data' -H 'X-Api-Key:odt_jwqMzLAEplZlA0WHat9lps0UC40p99qb' -F 'project=ff03814a-d833-47a3-bd73-7536e4b56d7e' -F 'bom=@./cdxbom.json'
+      #- name: Upload BOM file to Dependency-Track
+      #  run: curl -X "POST" http://antovski.ddns.net:8091/api/v1/bom -H 'Content-Type:multipart/form-data' -H 'X-Api-Key:odt_jwqMzLAEplZlA0WHat9lps0UC40p99qb' -F 'project=ff03814a-d833-47a3-bd73-7536e4b56d7e' -F 'bom=@./cdxbom.json'
 
       - name: Upload BOM file to Dependency-Track2
         uses: DependencyTrack/gh-upload-sbom@v2.0.0
