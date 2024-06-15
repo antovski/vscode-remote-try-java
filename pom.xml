@@ -43,17 +43,21 @@
             <includeTestScope>false</includeTestScope>
             <includeLicenseText>false</includeLicenseText>
             <outputReactorProjects>true</outputReactorProjects>
-            <outputFormat>xml</outputFormat>
+            <outputFormat>json</outputFormat>
             <outputName>java-bom</outputName>
-            <!--<outputDirectory>${project.build.directory}</outputDirectory>--> <!-- usually target, if not redefined in pom.xml -->
-            <outputDirectory>./sbom</outputDirectory>
+            <outputDirectory>${project.build.directory}</outputDirectory> <!-- usually target, if not redefined in pom.xml -->
+            <!--<outputDirectory>./sbom</outputDirectory>-->
             <verbose>false</verbose><!-- = ${cyclonedx.verbose} -->
           </configuration>
+        </plugin>
+        <plugin>
+          <groupId>org.cyclonedx</groupId>
+          <artifactId>cyclonedx-maven-plugin</artifactId>
           <executions>
             <execution>
               <phase>package</phase>
               <goals>
-                <goal>makeAggregateBom</goal>
+                  <goal>makeAggregateBom</goal>
               </goals>
             </execution>
           </executions>
