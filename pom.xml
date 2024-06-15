@@ -43,9 +43,10 @@
             <includeTestScope>false</includeTestScope>
             <includeLicenseText>false</includeLicenseText>
             <outputReactorProjects>true</outputReactorProjects>
-            <outputFormat>all</outputFormat>
+            <outputFormat>xml</outputFormat>
             <outputName>java-bom</outputName>
-            <outputDirectory>${project.build.directory}</outputDirectory> <!-- usually target, if not redefined in pom.xml -->
+            <!--<outputDirectory>${project.build.directory}</outputDirectory>--> <!-- usually target, if not redefined in pom.xml -->
+            <outputDirectory>./sbom</outputDirectory>
             <verbose>false</verbose><!-- = ${cyclonedx.verbose} -->
           </configuration>
         </plugin>
