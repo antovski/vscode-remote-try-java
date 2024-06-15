@@ -39,7 +39,7 @@ jobs:
           apikey: odt_jwqMzLAEplZlA0WHat9lps0UC40p99qb
           projectname: 'Example Project'
           projectversion: 'master'
-          bomfilename: "./cdxbom.json"
+          bomfilename: "./bom.json"
           autocreate: true
 
 
