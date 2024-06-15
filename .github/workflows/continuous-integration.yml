@@ -32,7 +32,7 @@ jobs:
       - name: Experiment -> generate bom
         run: cdxgen -o cdxbom.json
       - name: Experiment -> Upload SBOM to DT
-        run: curl -X "POST" http://antovski.ddns.net:8091/api/v1/bom -H 'Content-Type:multipart/form-data' -H 'X-Api-Key:odt_jwqMzLAEplZlA0WHat9lps0UC40p99qb' -F 'project=ff03814a-d833-47a3-bd73-7536e4b56d7e' -F 'bom=@bom.json'
+        run: curl -X "POST" http://antovski.ddns.net:8091/api/v1/bom -H 'Content-Type:multipart/form-data' -H 'X-Api-Key:odt_jwqMzLAEplZlA0WHat9lps0UC40p99qb' -F 'project=ff03814a-d833-47a3-bd73-7536e4b56d7e' -F 'bom=@./cdxbom.json'
 
 
       #- name: Upload SBOM to DT
