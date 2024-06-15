@@ -32,3 +32,56 @@ jobs:
       # Show the risk score output 
       - name: Get the output time
         run: echo "The risk score of the project is ${{ steps.riskscoreFromDT.outputs.riskscore }}"
+#--------------------
+
+# Run continuous integration
+
+on:
+  push:
+    branches:
+      - '*'
+  pull_request:
+    branches:
+      - '*'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    permissions:
+      id-token: write
+      contents: read
+      attestations: write
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+          check-latest: false
+          cache: 'maven'
+      - name: Run the Maven verify phase
+        run: mvn --batch-mode --update-snapshots verify
+      - name: Build with Maven
+        run: 'mvn package'
+        shell: bash
+       
+      #- run: mkdir staging && cp target/*.jar staging
+      - uses: actions/upload-artifact@v4
+        with:
+          name: Package
+          path: staging
+
+      - name: Build artifact
+        run: make my-app
+
+      - run: mvn clean install      
+
+      - name: Generate SBOM
+        uses: anchore/sbom-action@v0
+        with:
+          format: 'cyclonedx-json'
+          output-file: 'sbom-cdx.json'
