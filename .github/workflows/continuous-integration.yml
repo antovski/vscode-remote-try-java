@@ -24,32 +24,38 @@ jobs:
       - name: Build with Maven
         run: 'mvn package cyclonedx:makeAggregateBom'
         shell: bash
-      # Generate BOM file and upload to DT
+
+        # Generate BOM file and upload to DT
       - name: Install cdxgen
         run: 'npm install -g @cyclonedx/cdxgen'
       - name: Generate BOM file
         run: cdxgen -o bom.json
+      - name: Upload BOM file to Dependency-Track
+        run: |
+          curl -X "POST" http://antovski.ddns.net:8091/api/v1/bom
+           -H 'Content-Type:multipart/form-data'
+           -H 'X-Api-Key:odt_jwqMzLAEplZlA0WHat9lps0UC40p99qb'
+           -F 'project=ff03814a-d833-47a3-bd73-7536e4b56d7e'
+           -F 'bom=@./cdxbom.json'
+
+           
       #- name: Upload BOM file to Dependency-Track
-      #  run: curl -X "POST" http://antovski.ddns.net:8091/api/v1/bom -H 'Content-Type:multipart/form-data' -H 'X-Api-Key:odt_jwqMzLAEplZlA0WHat9lps0UC40p99qb' -F 'project=ff03814a-d833-47a3-bd73-7536e4b56d7e' -F 'bom=@./cdxbom.json'
-
-      - name: Upload BOM file to Dependency-Track2
-        uses: DependencyTrack/gh-upload-sbom@v3.0.0
-        with:
-          serverhostname: http://antovski.ddns.net:8091/api/v1/bom
-          apikey: odt_jwqMzLAEplZlA0WHat9lps0UC40p99qb
-          #port: 8081
-          protocol: 'http'
-          projectname: 'Example Project'
-          projectversion: 'master'
-          bomfilename: "./bom.json"
-          autocreate: true
+      #  uses: DependencyTrack/gh-upload-sbom@v3.0.0
+      #  with:
+      #    serverhostname: http://antovski.ddns.net:8091/api/v1/bom
+      #    apikey: odt_jwqMzLAEplZlA0WHat9lps0UC40p99qb
+      #    protocol: 'http'
+      #    projectname: 'Example Project'
+      #    projectversion: 'master'
+      #    bomfilename: "./bom.json"
+      #    autocreate: true
 
 
-      #- name: Upload SBOM to DT
+      #- name: Upload BOM file to Dependency-Track
       #  uses: DependencyTrack/gh-upload-sbom@v3
       #    with:
       #    serverHostname: 'http://antovski.ddns.net:8091/api/v1/bom/'
       #    apiKey: 'odt_jwqMzLAEplZlA0WHat9lps0UC40p99qb'
       #    project: '30309883-16cc-4813-9dc7-1df8db4a3444'
       #    projectVersion: 'master'
-      #    bomFilename: "./sbom/bom.xml"
+      #    bomFilename: "./bom.json"
