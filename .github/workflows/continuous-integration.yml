@@ -22,7 +22,8 @@ jobs:
           check-latest: false
           cache: 'maven'
       - name: Build with Maven
-        run: 'mvn package cyclonedx:makeAggregateBom'
+        #run: 'mvn package cyclonedx:makeAggregateBom'
+        run: 'mvn package'
         shell: bash
 
         # Generate BOM file and upload to DT
@@ -38,7 +39,7 @@ jobs:
            -F 'project=ff03814a-d833-47a3-bd73-7536e4b56d7e'
            -F 'bom=@./cdxbom.json'
 
-           
+
       #- name: Upload BOM file to Dependency-Track
       #  uses: DependencyTrack/gh-upload-sbom@v3.0.0
       #  with:
