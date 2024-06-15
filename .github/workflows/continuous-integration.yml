@@ -33,20 +33,34 @@ jobs:
         run: 'mvn package'
         shell: bash
        
-      - run: mkdir staging && cp target/*.jar staging
-      - uses: actions/upload-artifact@v4
-        with:
-          name: Package
-          path: staging
+      #- run: mkdir staging && cp target/*.jar staging
+      #- uses: actions/upload-artifact@v4
+      #  with:
+      #    name: Package
+      #    path: staging
 
       #- name: Build artifact
       #  run: make my-app
 
-      - run: mvn clean install      
+      #- run: mvn clean install      
 
-      - name: Generate SBOM
-        uses: anchore/sbom-action@v0
+      #- name: Generate SBOM
+      #  uses: anchore/sbom-action@v0
+      #  with:
+      #    format: 'cyclonedx-json'
+      #    output-file: 'sbom-cdx.json'
+
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2 
+        
+      # Generates a BoM and uploads it to OWASP Dependency Track
+      - name: Generates BoM and upload to OWASP DTrack
+        id: riskscoreFromDT
+        uses:  Quobis/action-owasp-dependecy-track-check@main
         with:
-          format: 'cyclonedx-json'
-          output-file: 'sbom-cdx.json'
+          url: 'https://dtrack.quobis.com'
+          key: '${{ secrets.SECRET_OWASP_DT_KEY }}'
+          language: 'golang'
+        
+  
 
