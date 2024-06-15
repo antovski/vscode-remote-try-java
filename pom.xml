@@ -30,6 +30,28 @@
           <version>3.0.0-M6</version>
         </plugin>
       </plugins>
+      <plugins>
+        <plugin>
+          <groupId>org.cyclonedx</groupId>
+          <artifactId>cyclonedx-maven-plugin</artifactId>
+          <configuration>
+            <projectType>library</projectType>
+            <schemaVersion>1.5</schemaVersion>
+            <includeBomSerialNumber>true</includeBomSerialNumber>
+            <includeCompileScope>true</includeCompileScope>
+            <includeProvidedScope>true</includeProvidedScope>
+            <includeRuntimeScope>true</includeRuntimeScope>
+            <includeSystemScope>true</includeSystemScope>
+            <includeTestScope>false</includeTestScope>
+            <includeLicenseText>false</includeLicenseText>
+            <outputReactorProjects>true</outputReactorProjects>
+            <outputFormat>all</outputFormat>
+            <outputName>java-bom</outputName>
+            <outputDirectory>${project.build.directory}</sbom><!-- usually target, if not redefined in pom.xml -->
+            <verbose>false</verbose><!-- = ${cyclonedx.verbose} -->
+          </configuration>
+        </plugin>
+      </plugins>
     </pluginManagement>
   </build>
 </project>
