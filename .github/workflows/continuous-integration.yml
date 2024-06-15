@@ -25,7 +25,7 @@ jobs:
         run: 'mvn package cyclonedx:makeAggregateBom'
         shell: bash
       - name: Upload SBOM to DT
-        run: curl -X "POST" http://antovski.ddns.net:8091/api/v1/bom -H 'Content-Type:multipart/form-data' -H 'X-Api-Key:odt_jwqMzLAEplZlA0WHat9lps0UC40p99qb' -F "project=30309883-16cc-4813-9dc7-1df8db4a3444" -F "bom=@/sbom/bom.json"
+        run: curl -X "POST" http://antovski.ddns.net:8091/api/v1/bom -H 'Content-Type:multipart/form-data' -H 'X-Api-Key:odt_jwqMzLAEplZlA0WHat9lps0UC40p99qb' -F 'project=30309883-16cc-4813-9dc7-1df8db4a3444' -F 'bom=@/sbom/bom.json'
 
 
       #- name: Upload SBOM to DT
