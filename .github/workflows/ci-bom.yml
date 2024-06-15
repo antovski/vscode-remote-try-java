@@ -1,5 +1,4 @@
 # Run continuous integration
-
 on:
   push:
     branches:
@@ -7,10 +6,10 @@ on:
   pull_request:
     branches:
       - '*'
-
+  
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -22,5 +21,6 @@ jobs:
           check-latest: false
           cache: 'maven'
       - name: Build with Maven & generate BOM
-        run: 'mvn package'
+        run: 'mvn install cyclonedx:makeAggregateBom'
         shell: bash
+  
