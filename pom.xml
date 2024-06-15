@@ -49,6 +49,14 @@
             <outputDirectory>./sbom</outputDirectory>
             <verbose>false</verbose><!-- = ${cyclonedx.verbose} -->
           </configuration>
+          <executions>
+            <execution>
+              <phase>package</phase>
+              <goals>
+                <goal>makeAggregateBom</goal>
+              </goals>
+            </execution>
+          </executions>
         </plugin>
       </plugins>
     </pluginManagement>
