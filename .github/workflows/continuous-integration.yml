@@ -31,7 +31,7 @@ jobs:
         run: 'mvn package'
         shell: bash
       - name: Build artifact
-        run: make app
+        run: make App.java
       - name: Generate SBOM
         uses: anchore/sbom-action@v0
         with:
