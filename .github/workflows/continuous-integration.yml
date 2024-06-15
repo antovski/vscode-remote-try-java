@@ -37,6 +37,8 @@ jobs:
         with:
           serverhostname: http://antovski.ddns.net:8091/api/v1/bom
           apikey: odt_jwqMzLAEplZlA0WHat9lps0UC40p99qb
+          #port: 8081
+          protocol: 'http'
           projectname: 'Example Project'
           projectversion: 'master'
           bomfilename: "./bom.json"
