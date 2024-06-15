@@ -21,8 +21,6 @@ jobs:
           java-version: '17'
           check-latest: false
           cache: 'maven'
-      - name: Build with Maven
-        run: 'mvn package'
+      - name: Build with Maven & generate BOM
+        run: 'mvn package cyclonedx:makeAggregateBom'
         shell: bash
-      - name: Generate BOM
-        run: 'mvn install cyclonedx:makeAggregateBom clean'
