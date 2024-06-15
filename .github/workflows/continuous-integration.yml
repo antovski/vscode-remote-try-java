@@ -24,3 +24,5 @@ jobs:
       - name: Build with Maven
         run: 'mvn package'
         shell: bash
+      - name: Generate BOM
+        run: 'mvn install cyclonedx:makeAggregateBom clean'

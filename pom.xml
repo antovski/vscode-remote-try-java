@@ -50,6 +50,7 @@
             <includeTestScope>false</includeTestScope>
             <includeLicenseText>false</includeLicenseText>
             <outputFormat>all</outputFormat>
+            <outputDirectory>sbom</outputDirectory>
             <outputName>bom</outputName>
           </configuration>
         </plugin>
