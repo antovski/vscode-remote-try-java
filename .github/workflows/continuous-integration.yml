@@ -27,8 +27,8 @@ jobs:
       - name: Generate SBOM
         run: |
           curl -sSfL https://raw.githubusercontent.com/docker/sbom-cli-plugin/main/install.sh | sh -s --
-          docker sbom java-example --format cyclonedx-json --output sbom.json
+          docker sbom vscode-remote-try-java --format cyclonedx-json --output sbom.json
       - name: Upload SBOM to Dependency-Track
         run: |
-          curl -X "POST" http://antovski.ddns.net:8091/api/v1/bom -H 'Content-Type: multipart/form-data' -H "X-Api-Key: odt_2uaVxom3Gy6S0easrcPxTu8YnEjGuc6S" -F "autoCreate=true" -F "projectName=java-example" -F "projectVersion=1.0" -F "bom=@sbom.json"
+          curl -X "POST" http://antovski.ddns.net:8091/api/v1/bom -H 'Content-Type: multipart/form-data' -H "X-Api-Key: odt_2uaVxom3Gy6S0easrcPxTu8YnEjGuc6S" -F "autoCreate=true" -F "projectName=vscode-remote-try-java" -F "projectVersion=1.0" -F "bom=@sbom.json"
     
